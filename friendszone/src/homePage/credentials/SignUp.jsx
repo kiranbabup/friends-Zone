@@ -13,22 +13,55 @@ const SignUp = () => {
     const [ph, setPh] = useState("");
     const [gen, setGen] = useState("");
     const [tcCheckbox, setTcCheckbox] = useState(false);
-    // let available = false;
 
+    const userarr = usersStore(state => state.users);
+    const setUserArr = usersStore(state => state.updateUsers);
+
+    useEffect(() => {
+        console.log(userarr);
+    }, [userarr])
+    
     const onSignUpClick = (e) => {
         e.preventDefault();
         if (un !== "" && pw !== "" && fn !== "" && em !== "" && ph !== "" && cpw !== "" && gen !== "" && tcCheckbox !== false) {
-            const user = {
-                username: un,
-                password: pw,
-                fullname: fn,
-                email: em,
-                phone: ph,
-                gender: gen
-            };
-            setUserArr(user);
-            navigate("/login");
-            appendObjectToArray(user);
+            let getOldDate = (localStorage.getItem("myArray"));
+            if (!getOldDate) {
+                // Local storage is empty, add data
+                const user = {
+                    username: un,
+                    password: pw,
+                    fullname: fn,
+                    email: em,
+                    phone: ph,
+                    gender: gen
+                };
+                setUserArr(user);
+                navigate("/login");
+                appendObjectToArray(user);
+                console.log("Data added to local storage");
+            } else {
+                // Local storage is not empty, check if username exists
+                var username = un;
+                if (getOldDate.includes(username)) {
+                    console.log("Username already exists in local storage");
+                    alert("Username already exists");
+                }
+                else {
+                    // Username does not exist, add data
+                    const user = {
+                        username: un,
+                        password: pw,
+                        fullname: fn,
+                        email: em,
+                        phone: ph,
+                        gender: gen
+                    };
+                    setUserArr(user);
+                    navigate("/login");
+                    appendObjectToArray(user);
+                    console.log("Data added to local storage");
+                }
+            }
         }
     }
 
@@ -38,29 +71,24 @@ const SignUp = () => {
         localStorage.setItem('myArray', JSON.stringify(storedArray));
     }
 
-    const userarr = usersStore(state => state.users)
-    const setUserArr = usersStore(state => state.updateUsers)
-
-    useEffect(() => {
-        console.log(userarr);
-    }, [userarr])
-
     const onValidateUsername = () => {
-        if (un.match("^[A-Za-z][A-Za-z]{4,29}$")) {
-            let getOldDate = JSON.parse(localStorage.getItem("myArray"));
-            getOldDate.find((user) => {
-                if (user.username == un) {
-                    console.log("User available")
-                }
-            })
+        if (un.match("^[A-Za-z][A-Za-z]{4,20}$")) {
             console.log(un);
             return true;
+        }
+        else {
+            alert("Username invalied");
         }
     }
 
     const onValidatePassword = () => {
-        if (pw.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{4,15}$/)) {
+        if (pw.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{4,12}$/)) {
             return true;
+        }
+        else {
+            if (pw.length == 3) {
+                alert("Password invalied");
+            }
         }
     }
 
@@ -74,15 +102,20 @@ const SignUp = () => {
         if (em.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
             return true;
         }
+        else {
+            alert("E-mail invalied");
+        }
     }
 
     const onValidateMobileNo = () => {
         if (ph.match(/^[0]?[6789]\d{9}$/)) {
             return true;
         }
-
+        else {
+            alert("Phone number invalied");
+        }
     }
-    
+
     const onGenSelect = (e) => {
         if (e.target.checked) {
             setGen(e.target.value);
@@ -103,11 +136,11 @@ const SignUp = () => {
                     <table>
                         <tr>
                             <td><sup>*</sup>UserName:</td>
-                            <td><input type='text' placeholder='username' required onChange={(e) => setUn(e.target.value)} onBlur={()=>onValidateUsername()} /></td>
+                            <td><input type='text' placeholder='username' required onChange={(e) => setUn(e.target.value)} onBlur={() => onValidateUsername()} /></td>
                         </tr>
                         <tr>
                             <td><sup>*</sup>Password:</td>
-                            <td><input type='password' placeholder='password' required onChange={(e) => setPw(e.target.value)} onBlur={()=>onValidatePassword()} /></td>
+                            <td><input type='password' placeholder='password' required onChange={(e) => setPw(e.target.value)} onBlur={() => onValidatePassword()} /></td>
                         </tr>
                         <tr>
                             <td><sup>*</sup>Confirm Password:</td>
@@ -131,6 +164,7 @@ const SignUp = () => {
                                 <p>
                                     <input type="radio" name="gender" value="male" required checked={gen == 'male'} onChange={(e) => onGenSelect(e)} /> Male
                                     <input type="radio" name="gender" value="female" required checked={gen == 'female'} onChange={(e) => onGenSelect(e)} /> Female
+                                    <input type="radio" name="gender" value="other" required checked={gen == 'other'} onChange={(e) => onGenSelect(e)} /> Other
                                 </p>
                             </td>
                         </tr>
