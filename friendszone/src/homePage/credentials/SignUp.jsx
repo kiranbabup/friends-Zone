@@ -92,7 +92,7 @@ const SignUp = () => {
         <div className="signup">
             <main>
                 <section>
-                    <h1>FriendsZone</h1>
+                    <h1><b>Friends</b>Zone</h1>
                     <article>
                         <h2>Welcome</h2>
                         <p>Sign UP for awsome experience</p>

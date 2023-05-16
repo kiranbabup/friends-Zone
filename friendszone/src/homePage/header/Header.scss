@@ -10,17 +10,39 @@
     padding-left: 1rem;
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 }
+
 .logo {
     width: 6rem;
-    background-color: aqua;
+    font-size: 1.5rem;
+    color: aqua;
+    b {
+        color: chartreuse;
+    }
 }
+
 .credentials {
     width: 8rem;
     // background-color: burlywood;
     padding-right: 1rem;
 
-    button {
-        border: none;
-        background-color: white;
+    article {
+        width: 10rem;
+        height: 2rem;
+        // background-color: aqua;
+
+        button {
+            border: none;
+            background-color: white;
+        }
+    }
+    details {
+        width: 10rem;
+        height: 2rem;
+
+        button {
+            border: none;
+            background-color: white;
+            margin-top: 0.5rem;
+        }  
     }
 }

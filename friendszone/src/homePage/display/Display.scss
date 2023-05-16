@@ -6,11 +6,58 @@
     main {
         width: 100%;
         height: calc(100% - 64px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+
+        aside {
+            width: 87%;
+            height: 19rem;
+            // background-color: chartreuse;
+            display: flex;
+            align-items: start;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+
+            section {
+                // background-color: cadetblue;
+                text-align: center;
+                width: 7rem;
+            }
+        }
     }
 }
+
+.imageCat {
+    box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, rgba(114, 113, 113, 0.9) 0px 0px 0px 1px;
+    width: 6rem;
+    height: 6rem;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .catImg {
+        min-width: 5rem;
+        max-height: 5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            max-width: 4rem;
+            min-height: 4rem;
+        }
+    }
+}
+
+
 .blankheader {
     width: 100%;
     height: 64px;
 }
+
 // box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
 // shadeddeded box-shadow: blue 0px 0px 0px 2px inset, rgb(255, 255, 255) 10px -10px 0px -3px, rgb(31, 193, 27) 10px -10px, rgb(255, 255, 255) 20px -20px 0px -3px, rgb(255, 217, 19) 20px -20px, rgb(255, 255, 255) 30px -30px 0px -3px, rgb(255, 156, 85) 30px -30px, rgb(255, 255, 255) 40px -40px 0px -3px, rgb(255, 85, 85) 40px -40px;
