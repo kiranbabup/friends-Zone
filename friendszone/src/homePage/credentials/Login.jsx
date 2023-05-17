@@ -3,8 +3,8 @@ import './Login.scss';
 import { useState } from 'react';
 import { usersStore } from '../../App';
 
-const Login = () =>{
-  const navigate = useNavigate();
+const Login = () => {
+    const navigate = useNavigate();
     const [loginUN, setLoginUn] = useState("");
     const [loginPwd, setLoginPwd] = useState("");
 
@@ -12,19 +12,24 @@ const Login = () =>{
     const setSuccess = usersStore(state => state.updateSuces);
 
     const onLoginClick = () => {
-        let storedArr = JSON.parse(localStorage.getItem("myArray"));
-        // console.log(storedArr);
-        let foundUser = storedArr.find((user)=>{
-            if(user.username==loginUN){
-                if(user.password==loginPwd){
-                    navigate('/');
-                    setSuccess("true");
-                    return user;
+        let adminArr = JSON.parse(localStorage.getItem("admin"));
+        if (adminArr.userName == loginUN && adminArr.password == loginPwd) {
+            setSuccess("Kiranpkb");
+            navigate('/');
+        }
+        else {
+            let storedArr = JSON.parse(localStorage.getItem("myArray"));
+            let foundUser = storedArr.find((user) => {
+                if (user.username == loginUN) {
+                    if (user.password == loginPwd) {
+                        navigate('/');
+                        setSuccess(user.username);
+                        return user;
+                    }
                 }
-            }
-        });
-        setAccUser(foundUser);
-      
+            });
+            setAccUser(foundUser);
+        }
     }
     return (
         <div className="login">
@@ -35,11 +40,11 @@ const Login = () =>{
                         <h2>Welcome</h2>
                         <p>Login for awsome experience</p>
                     </article>
-                    <button onClick={()=>navigate('/')}>X</button>
+                    <button onClick={() => navigate('/')}>X</button>
                 </section>
                 <form onSubmit={onLoginClick}>
-                    <input type='text' placeholder='username' required onChange={(e)=>setLoginUn(e.target.value)} />
-                    <input type='password' placeholder='password' required onChange={(e)=>setLoginPwd(e.target.value)}/>
+                    <input type='text' placeholder='username' required onChange={(e) => setLoginUn(e.target.value)} />
+                    <input type='password' placeholder='password' required onChange={(e) => setLoginPwd(e.target.value)} />
                     <button type='submit'>Login</button>
                     <p>You don't have an account? <button onClick={() => navigate('/signup')}>Sign Up</button></p>
                 </form>

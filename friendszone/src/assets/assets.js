@@ -1,5 +1,3 @@
-import restaurantImg from "./restaurantImage.png";
-import hotelImg from "./hotelImage.png";
 export const assets = [
     {
         url: 'https://cdn-icons-png.flaticon.com/512/1376/1376387.png',
@@ -82,3 +80,38 @@ export const assets = [
         category: "Popular Categories"
     }
 ];
+export const asset = [
+    "Astrologers",
+    "Body Massage Centers",
+    "Beauty Spa",
+    "Car Hire",
+    "Caterers",
+    "Chartered Accountant",
+    "Computer Training Institutes",
+    "Computer & Laptop Repair & Services",
+    "Car Repair & Services",
+    "Dermatologists",
+    "Electricians",
+    "Real Estate",
+    "Fabricators",
+    "Furniture Repair Services",
+    "House keeping Services",
+    "Hobbies",
+    "Interior Designers",
+    "Internet Website Designers",
+    "Jewellery Showrooms",
+    "Lawyers",
+    "Transporters",
+    "Photographers",
+    "Nursing Services",
+    "Printing & Publishing Services",
+    "Placement Services",
+    "Pest Control Services",
+    "Painting Contractors",
+    "Scrap Dealers",
+    "Scrap Buyers",
+    "Registration Consultants",
+    "Security System",
+    "Coaching",
+    "Vocational training",
+]

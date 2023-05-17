@@ -8,20 +8,26 @@ const Header = () => {
     console.log(acU);
     const status = usersStore(state => state.success);
     const setStatus = usersStore(state => state.updateSuces);
+    const setSelectedCat = usersStore(state => state.updateSelectedCategory);
 
-    const onLogoutClick = () => { setStatus("false"); }
-
+    const onLogoutClick = () => { 
+        setStatus("false"); 
+    }
+    
     return (
         <div className="header">
-            <div className="logo"><b>Friends</b>Zone</div>
+            <div className="logo" onClick={()=>{navigate('/'); setSelectedCat("")}}><b>Friends</b>Zone</div>
             <div className="credentials">
                 { status === "false" ?
-                    <article>
+                    <nav>
                         <button onClick={() => navigate('/login')}>Login</button>/<button onClick={() => navigate('/signup')}>Sign Up</button>
-                    </article>
+                    </nav>
                     :
                     <details>
-                        <summary>{acU[0].username}</summary>
+                        <summary>{status}</summary>
+                        <br/>
+                        {(status == "Kiranpkb") ? <button onClick={() => navigate('/admindashboard')}>Admin Dashboard</button>: true}
+                        <br/>
                         <button onClick={() => onLogoutClick()}>Logout</button>
                     </details>
                 }

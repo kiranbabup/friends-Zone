@@ -5,6 +5,8 @@ import Login from './homePage/credentials/Login';
 import SignUp from './homePage/credentials/SignUp';
 import { create } from 'zustand';
 import Display from './homePage/display/Display';
+import AdminDashBoard from './homePage/admin/AdminDashboard';
+import CategoryPage from './homePage/display/CategoryPage';
 
 export const usersStore = create((set) => ({
   users: [],
@@ -15,6 +17,9 @@ export const usersStore = create((set) => ({
 
   success: "false",
   updateSuces: (s)=>set(()=>({success: s})),
+
+  selectedCategory: "",
+  updateSelectedCategory: (s)=>set(()=>({selectedCategory: s})),
 }))
 
 const App = () => {
@@ -26,6 +31,8 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/display" element={<Display />} />
+        <Route path="/admindashboard" element={<AdminDashBoard />} />
+        <Route path='/categorypage' element={<CategoryPage/>}/>
       </Routes>
     </div>
   );

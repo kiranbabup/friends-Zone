@@ -41,8 +41,7 @@ const SignUp = () => {
                 console.log("Data added to local storage");
             } else {
                 // Local storage is not empty, check if username exists
-                var username = un;
-                if (getOldDate.includes(username)) {
+                if (getOldDate.includes(un)) {
                     console.log("Username already exists in local storage");
                     alert("Username already exists");
                 }
@@ -99,12 +98,12 @@ const SignUp = () => {
     }
 
     const onValidateEmailId = () => {
-        if (em.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
-            return true;
-        }
-        else {
-            alert("E-mail invalied");
-        }
+    //     if (em.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
+    //         return true;
+    //     }
+    //     else {
+    //         alert("E-mail invalied");
+    //     }
     }
 
     const onValidateMobileNo = () => {
