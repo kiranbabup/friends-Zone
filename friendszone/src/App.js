@@ -9,14 +9,14 @@ import AdminDashBoard from './homePage/admin/AdminDashboard';
 import CategoryPage from './homePage/display/CategoryPage';
 
 export const usersStore = create((set) => ({
-  users: [],
-  updateUsers: (val) => set((state) => ({ users: [...state.users, [val]] })),
+  // users: [],
+  // updateUsers: (val) => set((state) => ({ users: [...state.users, [val]] })),
 
-  accUser: [],
-  updateAccUser: (u)=>set(()=>({accUser: [u]})),
+  // accUser: [],
+  // updateAccUser: (u)=>set(()=>({accUser: [u]})),
 
-  success: "false",
-  updateSuces: (s)=>set(()=>({success: s})),
+  // success: "false",
+  // updateSuces: (s)=>set(()=>({success: s})),
 
   selectedCategory: "",
   updateSelectedCategory: (s)=>set(()=>({selectedCategory: s})),

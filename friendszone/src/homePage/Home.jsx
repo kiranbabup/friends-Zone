@@ -2,6 +2,7 @@ import './Home.scss';
 import Header from "./header/Header";
 import Display from './display/Display';
 import { useEffect } from 'react';
+import { usersStore } from '../App';
 
 const Home = () => {
     useEffect(() => {
@@ -10,7 +11,7 @@ const Home = () => {
     
     const onLoadAdmin = () => {
         const adminData = {
-            userName: "Kiranpkb",
+            username: "Kiranpkb",
             password: "pkbpkb123",
         }
         localStorage.setItem("admin", JSON.stringify(adminData));

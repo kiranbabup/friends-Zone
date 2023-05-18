@@ -1,36 +1,41 @@
 import { useNavigate } from 'react-router-dom';
 import './Login.scss';
 import { useState } from 'react';
-import { usersStore } from '../../App';
 
 const Login = () => {
     const navigate = useNavigate();
     const [loginUN, setLoginUn] = useState("");
     const [loginPwd, setLoginPwd] = useState("");
 
-    const setAccUser = usersStore(state => state.updateAccUser);
-    const setSuccess = usersStore(state => state.updateSuces);
-
     const onLoginClick = () => {
         let adminArr = JSON.parse(localStorage.getItem("admin"));
-        if (adminArr.userName == loginUN && adminArr.password == loginPwd) {
-            setSuccess("Kiranpkb");
+        if (adminArr.username == loginUN && adminArr.password == loginPwd) {
             navigate('/');
+            localStorage.setItem('currentUser', JSON.stringify(adminArr));
         }
         else {
             let storedArr = JSON.parse(localStorage.getItem("myArray"));
-            let foundUser = storedArr.find((user) => {
+            var foundUser = storedArr.find((user) => {
                 if (user.username == loginUN) {
                     if (user.password == loginPwd) {
                         navigate('/');
-                        setSuccess(user.username);
                         return user;
+                    }else {
+                        alert("Incorrect password")
                     }
                 }
+                else {
+                    alert("Incorrect username")
+                }
             });
-            setAccUser(foundUser);
+            let getCurrentUserData = (localStorage.getItem("currentUser"));
+            if (!getCurrentUserData && !!foundUser) {
+                localStorage.setItem('currentUser', JSON.stringify(foundUser));
+            }
         }
+        console.log(adminArr)
     }
+
     return (
         <div className="login">
             <main>

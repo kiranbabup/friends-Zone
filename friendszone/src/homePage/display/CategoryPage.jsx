@@ -5,13 +5,16 @@ import { usersStore } from "../../App";
 const CategoryPage = () => {
     const selectedCat = usersStore(state => state.selectedCategory);
 
+    const onAdvertiseClicked = ()=>{
+        
+    }
     return (
         <div className="categorypage">
             <Header />
 
             <div className='blankheader'>
                 <nav>
-                    <p>Hi friend! Do you wanna Advertise your business <button>click here!</button></p>
+                    <p>Hi friend! Do you wanna Advertise your business <button onClick={()=>onAdvertiseClicked()}>click here!</button></p>
                 </nav>
             </div>
 

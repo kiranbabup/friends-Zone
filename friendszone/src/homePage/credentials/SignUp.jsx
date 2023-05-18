@@ -15,12 +15,11 @@ const SignUp = () => {
     const [tcCheckbox, setTcCheckbox] = useState(false);
 
     const userarr = usersStore(state => state.users);
-    const setUserArr = usersStore(state => state.updateUsers);
 
     useEffect(() => {
         console.log(userarr);
     }, [userarr])
-    
+
     const onSignUpClick = (e) => {
         e.preventDefault();
         if (un !== "" && pw !== "" && fn !== "" && em !== "" && ph !== "" && cpw !== "" && gen !== "" && tcCheckbox !== false) {
@@ -35,13 +34,15 @@ const SignUp = () => {
                     phone: ph,
                     gender: gen
                 };
-                setUserArr(user);
                 navigate("/login");
-                appendObjectToArray(user);
+                localStorage.setItem('myArray', JSON.stringify([user]));
+
                 console.log("Data added to local storage");
             } else {
                 // Local storage is not empty, check if username exists
-                if (getOldDate.includes(un)) {
+                if (
+                    getOldDate.includes(un)
+                ) {
                     console.log("Username already exists in local storage");
                     alert("Username already exists");
                 }
@@ -55,19 +56,14 @@ const SignUp = () => {
                         phone: ph,
                         gender: gen
                     };
-                    setUserArr(user);
                     navigate("/login");
-                    appendObjectToArray(user);
+                    const storedArray = JSON.parse(localStorage.getItem('myArray')) || [];
+                    storedArray.push(user);
+                    localStorage.setItem('myArray', JSON.stringify(storedArray));
                     console.log("Data added to local storage");
                 }
             }
         }
-    }
-
-    const appendObjectToArray = (newUser) => {
-        const storedArray = JSON.parse(localStorage.getItem('myArray')) || [];
-        storedArray.push(newUser);
-        localStorage.setItem('myArray', JSON.stringify(storedArray));
     }
 
     const onValidateUsername = () => {
@@ -98,12 +94,12 @@ const SignUp = () => {
     }
 
     const onValidateEmailId = () => {
-    //     if (em.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
-    //         return true;
-    //     }
-    //     else {
-    //         alert("E-mail invalied");
-    //     }
+            if (em.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
+                return true;
+            }
+            else {
+                alert("E-mail invalied");
+            }
     }
 
     const onValidateMobileNo = () => {
