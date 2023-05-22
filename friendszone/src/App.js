@@ -7,6 +7,7 @@ import { create } from 'zustand';
 import Display from './homePage/display/Display';
 import AdminDashBoard from './homePage/admin/AdminDashboard';
 import CategoryPage from './homePage/display/CategoryPage';
+import AdvertiseRegistory from './homePage/credentials/AdvertiseRegistory';
 
 export const usersStore = create((set) => ({
   // users: [],
@@ -20,9 +21,13 @@ export const usersStore = create((set) => ({
 
   selectedCategory: "",
   updateSelectedCategory: (s)=>set(()=>({selectedCategory: s})),
-}))
 
-const App = () => {
+}))
+const privateRoot= ({ path, component,  })=>{
+return <Route path={path} />
+}
+ const App = () => {
+
 
   return (
     <div className="App">
@@ -33,6 +38,8 @@ const App = () => {
         <Route path="/display" element={<Display />} />
         <Route path="/admindashboard" element={<AdminDashBoard />} />
         <Route path='/categorypage' element={<CategoryPage/>}/>
+        <Route path='/advertise' element={<AdvertiseRegistory />}/>
+        
       </Routes>
     </div>
   );

@@ -20,7 +20,7 @@ const Display = () => {
     }
     return (
         <div className="display">
-            <div className='blankheader'></div>
+            {/* <div className='blankheader'></div> */}
             <main>
                 <aside>
                     {assets.map((a) => {

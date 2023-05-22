@@ -1,8 +1,11 @@
+import Header from "../header/Header";
+
 export const AdminDashBoard =()=>{
     return(
-        <>
-        adminDashBoard
-        </>
+        <div className="adminDashBoard">
+        <Header/>
+        
+        </div>
     )
 }
 export default AdminDashBoard;

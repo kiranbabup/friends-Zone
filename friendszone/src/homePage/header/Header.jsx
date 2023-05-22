@@ -13,13 +13,12 @@ const Header = () => {
         navigate('/')
     }
         let getUserdata =JSON.parse(localStorage.getItem("currentUser"));
-        let knowUserdata =(localStorage.getItem("currentUser"));
     
     return (
         <div className="header">
             <div className="logo" onClick={()=>{navigate('/'); setSelectedCat("")}}><b>Friends</b>Zone</div>
             <div className="credentials">
-                { !knowUserdata ?
+                { !getUserdata ?
                     <nav>
                         <button onClick={() => navigate('/login')}>Login</button>/<button onClick={() => navigate('/signup')}>Sign Up</button>
                     </nav>

@@ -1,12 +1,20 @@
 import './CategoryPage.scss';
 import Header from "../header/Header";
 import { usersStore } from "../../App";
+import { useNavigate } from 'react-router-dom';
 
 const CategoryPage = () => {
     const selectedCat = usersStore(state => state.selectedCategory);
-
+    const navigate = useNavigate();
+    
     const onAdvertiseClicked = ()=>{
-        
+        let knowUserdata =(localStorage.getItem("currentUser"));
+        if(!knowUserdata){
+            navigate('/login')
+        }
+        else{
+            navigate('/advertise')
+        }
     }
     return (
         <div className="categorypage">

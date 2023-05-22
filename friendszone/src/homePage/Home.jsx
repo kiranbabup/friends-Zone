@@ -2,7 +2,6 @@ import './Home.scss';
 import Header from "./header/Header";
 import Display from './display/Display';
 import { useEffect } from 'react';
-import { usersStore } from '../App';
 
 const Home = () => {
     useEffect(() => {
@@ -19,7 +18,7 @@ const Home = () => {
 
     return (
         <div className="home">
-            <Header />
+            <Header/>
             <Display />
         </div>
     )
