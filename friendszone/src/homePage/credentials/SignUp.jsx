@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import './SignUp.scss';
-import { usersStore } from "../../App";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const SignUp = () => {
     const navigate = useNavigate();
+
     const [un, setUn] = useState("");
     const [pw, setPw] = useState("");
     const [cpw, setCpw] = useState("");
@@ -14,48 +14,30 @@ const SignUp = () => {
     const [gen, setGen] = useState("");
     const [tcCheckbox, setTcCheckbox] = useState(false);
 
-    const userarr = usersStore(state => state.users);
-
-    useEffect(() => {
-        console.log(userarr);
-    }, [userarr])
-
     const onSignUpClick = (e) => {
         e.preventDefault();
         if (un !== "" && pw !== "" && fn !== "" && em !== "" && ph !== "" && cpw !== "" && gen !== "" && tcCheckbox !== false) {
             let getOldDate = (localStorage.getItem("myArray"));
+            var user = {
+                username: un,
+                password: pw,
+                fullname: fn,
+                email: em,
+                phone: ph,
+                gender: gen
+            };
             if (!getOldDate) {
                 // Local storage is empty, add data
-                const user = {
-                    username: un,
-                    password: pw,
-                    fullname: fn,
-                    email: em,
-                    phone: ph,
-                    gender: gen
-                };
                 navigate("/login");
                 localStorage.setItem('myArray', JSON.stringify([user]));
-
                 console.log("Data added to local storage");
             } else {
                 // Local storage is not empty, check if username exists
-                if (
-                    getOldDate.includes(un)
-                ) {
-                    console.log("Username already exists in local storage");
+                if (getOldDate.includes(un)) {
                     alert("Username already exists");
                 }
                 else {
                     // Username does not exist, add data
-                    const user = {
-                        username: un,
-                        password: pw,
-                        fullname: fn,
-                        email: em,
-                        phone: ph,
-                        gender: gen
-                    };
                     navigate("/login");
                     const storedArray = JSON.parse(localStorage.getItem('myArray')) || [];
                     storedArray.push(user);

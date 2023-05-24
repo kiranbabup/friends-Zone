@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const Header = () => {
     const navigate = useNavigate();
-    const acU = usersStore(state => state.accUser);
-    console.log(acU);
+    
     const setSelectedCat = usersStore(state => state.updateSelectedCategory);
 
     const onLogoutClick = () => { 

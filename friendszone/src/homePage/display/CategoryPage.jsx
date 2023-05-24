@@ -16,6 +16,9 @@ const CategoryPage = () => {
             navigate('/advertise')
         }
     }
+    let getConfirmedArray = JSON.parse(localStorage.getItem("userAdRequest"));
+    let checkLoginStatus = JSON.parse(localStorage.getItem("currentUser"));
+
     return (
         <div className="categorypage">
             <Header />
@@ -29,7 +32,17 @@ const CategoryPage = () => {
             <main>
                 <section><p>{selectedCat}</p></section>
                 <aside>
-                    hi
+                    {
+                        getConfirmedArray[0].isSubmitted == true ? <div>
+                            {
+                                getConfirmedArray.map((c)=>{return(
+                                    <div>
+                                        <article>{c[0].BusinessType}</article>
+                                    </div>
+                                )})
+                            }
+                        </div> : "Data under maintenance"
+                    }
                 </aside>
             </main>
         </div>

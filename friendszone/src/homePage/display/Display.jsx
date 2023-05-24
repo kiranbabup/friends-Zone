@@ -20,7 +20,6 @@ const Display = () => {
     }
     return (
         <div className="display">
-            {/* <div className='blankheader'></div> */}
             <main>
                 <aside>
                     {assets.map((a) => {
@@ -33,16 +32,21 @@ const Display = () => {
                     })
                     }
                 </aside>
-                    {
-                        (selectedCat === "Popular Categories") ?
+                {
+                    (selectedCat === "Popular Categories") ?
                         <div className='home_aside2'>
+                            <article>
+                                <button onClick={() => setSelectedCat("")} >X</button>
+                            </article>
+                            <section>
                                 {asset.map((a) => {
                                     return (
-                                            <button onClick={() => onCategoryClicked(a)}>{a}</button>
+                                        <button onClick={() => onCategoryClicked(a)}>{a}</button>
                                     )
                                 })}
-                            </div> : false
-                    }
+                            </section>
+                        </div> : false
+                }
             </main>
         </div>
     )

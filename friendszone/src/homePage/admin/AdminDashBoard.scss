@@ -1,0 +1,54 @@
+.adminDashBoard {
+    width: 100vw;
+    height: 100vh;
+    background-color: whitesmoke;
+    
+    main {
+        width: 100%;
+        height: calc(100vh - 64px);
+        // background-color: darkkhaki;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+
+        section{
+            width: 50%;
+            height: 35%;
+            display: flex;
+            // background-color: aqua;
+            justify-content: space-between;
+            article{
+                margin: .5rem 1rem;
+            }
+        }
+    }
+}
+.leftSide{
+    width: 50%;
+    height: 100%;
+    border: 2px solid lightgreen;
+}
+.rightSide{
+    width: 50%;
+    height: 100%;
+    border: 2px solid lightgreen;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+.RdownSide {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        margin: .5rem 0;
+
+        button{
+            // border: none;
+            width: 5rem;
+            height: 2rem;
+        }
+    
+}

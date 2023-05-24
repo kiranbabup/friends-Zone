@@ -115,3 +115,18 @@ export const asset = [
     "Coaching",
     "Vocational training",
 ]
+
+// export const buttonMaping = [
+//     {
+//         id: 1,
+//         value: "Location Information"
+//     },
+//     {
+//         id: 2,
+//         value: "Contact Information"
+//     },
+//     {
+//         id: 3,
+//         value: "Other Information"
+//     },
+// ]
