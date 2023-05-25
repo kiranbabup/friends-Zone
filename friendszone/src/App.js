@@ -8,6 +8,7 @@ import Display from './homePage/display/Display';
 import AdminDashBoard from './homePage/admin/AdminDashboard';
 import CategoryPage from './homePage/display/CategoryPage';
 import AdvertiseRegistory from './homePage/credentials/AdvertiseRegistory';
+import UserDashboard from './homePage/userDisplay/UserDashboard';
 
 export const usersStore = create((set) => ({
   // users: [],
@@ -39,7 +40,7 @@ return <Route path={path} />
         <Route path="/admindashboard" element={<AdminDashBoard />} />
         <Route path='/categorypage' element={<CategoryPage/>}/>
         <Route path='/advertise' element={<AdvertiseRegistory />}/>
-        
+        <Route path='/userdashboard' element={<UserDashboard/>}/>
       </Routes>
     </div>
   );

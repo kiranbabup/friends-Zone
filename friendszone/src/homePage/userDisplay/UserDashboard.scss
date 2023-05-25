@@ -1,0 +1,10 @@
+.userDashboard {
+    width: 100vw;
+    height: 100vh;
+    background-color: whitesmoke;
+    
+    main {
+        width: 100%;
+        height: calc(100vh - 64px);
+    }
+}

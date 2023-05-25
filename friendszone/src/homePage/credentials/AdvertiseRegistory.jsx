@@ -4,28 +4,32 @@ import Header from '../header/Header';
 import { useEffect, useState } from 'react';
 const AdvertiseRegistory = () => {
     const navigate = useNavigate();
+    let adId = JSON.parse(localStorage.getItem("adRegisteringId")) || 1;
+        
     const [buttonId, setButtonId] = useState(1);
     const [showByClick1, setShowByClick1] = useState(true);
     const [showByClick2, setShowByClick2] = useState(false);
     const [showByClick3, setShowByClick3] = useState(false);
     const [page1, setPage1] = useState({});
     const [page2, setPage2] = useState({});
-    const [page3, setPage3] = useState({
-        isSubmitted: false,
-    });
+    const [page3, setPage3] = useState({});
+        
 
     const onAdvertiseSubmitClick = () => {
         alert('Submited Successfully')
-        navigate('/advertise')
+        let unqId = ++adId;
+        localStorage.setItem("adRegisteringId",JSON.stringify(unqId))
         let getBusinessData = JSON.parse(localStorage.getItem("userAdRequest"));
         let getCurrentUser = JSON.parse(localStorage.getItem("currentUser"));
         if(!getBusinessData){
-            localStorage.setItem("userAdRequest", JSON.stringify([[page1,page2,page3,getCurrentUser]]))
+            localStorage.setItem("userAdRequest", JSON.stringify([[page1,page2,page3,getCurrentUser,{registerAdId: unqId}]]))
+            navigate('/categorypage')
         }
         else{
         let getBusinessData2 = JSON.parse(localStorage.getItem("userAdRequest"));
-            getBusinessData2.push([page1,page2,page3,getCurrentUser]);
+            getBusinessData2.push([page1,page2,page3,getCurrentUser,{registerAdId: unqId}]);
             localStorage.setItem("userAdRequest", JSON.stringify(getBusinessData2))
+            navigate('/categorypage')
         }
     }
 

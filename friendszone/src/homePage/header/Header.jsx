@@ -25,7 +25,7 @@ const Header = () => {
                     <details>
                         <summary>{getUserdata.username}</summary>
                         <br/>
-                        {(getUserdata.username == "Kiranpkb") ? <button onClick={() => navigate('/admindashboard')}>Admin Dashboard</button>: true}
+                        {(getUserdata.username == "Kiranpkb") ? <button onClick={() => navigate('/admindashboard')}>Admin Dashboard</button>: <button onClick={() => navigate('/userdashboard')} >Dashboard</button>}
                         <br/>
                         <button onClick={() => onLogoutClick()}>Logout</button>
                     </details>
