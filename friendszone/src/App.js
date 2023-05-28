@@ -22,11 +22,13 @@ export const usersStore = create((set) => ({
 
   selectedCategory: "",
   updateSelectedCategory: (s)=>set(()=>({selectedCategory: s})),
+  editRequest: [],
+  setEditRequest: (e)=>set(()=>({editRequest: e})),
 
 }))
-const privateRoot= ({ path, component,  })=>{
-return <Route path={path} />
-}
+// const privateRoot= ({ path, component,  })=>{
+// return <Route path={path} />
+// }
  const App = () => {
 
 

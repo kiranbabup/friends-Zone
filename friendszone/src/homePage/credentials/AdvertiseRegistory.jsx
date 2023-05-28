@@ -12,7 +12,9 @@ const AdvertiseRegistory = () => {
     const [showByClick3, setShowByClick3] = useState(false);
     const [page1, setPage1] = useState({});
     const [page2, setPage2] = useState({});
-    const [page3, setPage3] = useState({});
+    const [page3, setPage3] = useState({
+        isDeleted: false,
+    });
         
 
     const onAdvertiseSubmitClick = () => {

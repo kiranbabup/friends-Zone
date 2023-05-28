@@ -1,11 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import Header from "../header/Header";
 import './AdminDashBoard.scss';
+import { useEffect } from "react";
 
 export const AdminDashBoard = () => {
     const getBusinessData = JSON.parse(localStorage.getItem("userAdRequest"));
     const navigate = useNavigate();
-    
+    let getDeleteRequest = JSON.parse(localStorage.getItem('confirmedAd'));
+
+    // useEffect(()=>{
+    // localStorage.removeItem('confirmedAd')
+    // },[])
 
     const onConfirmClicked = (adId) => {
         let confirmedData = getBusinessData.filter((c) => {
@@ -20,28 +25,23 @@ export const AdminDashBoard = () => {
         let confirmedStorage = JSON.parse(localStorage.getItem('confirmedAd'));
         if (!confirmedStorage) {
             localStorage.setItem("confirmedAd", JSON.stringify(confirmedData));
-            localStorage.setItem("userAdRequest", JSON.stringify(LeftUnconfirmedData));
+            if (LeftUnconfirmedData.length != 0) {
+                localStorage.setItem("userAdRequest", JSON.stringify(LeftUnconfirmedData));
+            }
             navigate('/admindashboard')
         }
         else {
             let CDS = JSON.parse(localStorage.getItem('confirmedAd'));
-        // console.log(CDS)
+            // console.log(CDS)
             // let pushArray = [...CDS,confirmedData]
             CDS.push(confirmedData[0]);
-        // console.log(CDS)
+            // console.log(CDS)
             localStorage.setItem("confirmedAd", JSON.stringify(CDS));
-        // console.log(CDS)
-            localStorage.setItem("userAdRequest", JSON.stringify(LeftUnconfirmedData));
+            // console.log(CDS)
+            if (LeftUnconfirmedData.length != 0) {
+                localStorage.setItem("userAdRequest", JSON.stringify(LeftUnconfirmedData));
+            }
             navigate('/admindashboard')
-        //     let finalBusinessData = getBusinessData.map((f)=>{
-        //     console.log(f[4].registerAdId)
-        //         if(!f[4].registerAdId){
-        //             localStorage.removeItem("userAdRequest");
-        //         }else{
-        //             return f;
-        //         }
-        // })
-        //     console.log(finalBusinessData)
         }
     }
 
@@ -56,18 +56,35 @@ export const AdminDashBoard = () => {
         let rejectedStorage = JSON.parse(localStorage.getItem('rejectedAd'));
         if (!rejectedStorage) {
             localStorage.setItem("rejectedAd", JSON.stringify(rejectedData));
-            localStorage.setItem("userAdRequest", JSON.stringify(LeftUnrejectedData));
+            if (LeftUnrejectedData.length != 0) {
+                localStorage.setItem("userAdRequest", JSON.stringify(LeftUnrejectedData));
+            }
             navigate('/admindashboard')
         }
         else {
             let RDS = JSON.parse(localStorage.getItem('rejectedAd'));
             RDS.push(rejectedData[0]);
             localStorage.setItem("rejectedAd", JSON.stringify(RDS));
-            localStorage.setItem("userAdRequest", JSON.stringify(LeftUnrejectedData));
+            if (LeftUnrejectedData.length != 0) {
+                localStorage.setItem("userAdRequest", JSON.stringify(LeftUnrejectedData));
+            }
             navigate('/admindashboard')
         }
     }
-
+    const onDeleteAdClick = (id) => {
+        console.log(id)
+        let getConfirmData = JSON.parse(localStorage.getItem('confirmedAd'));
+        let leftData = getConfirmData.filter((f) => {
+            console.log(f[4].registerAdId)
+            if (f[4].registerAdId != id) {
+                return f;
+            }
+        })
+        console.log(leftData);
+        localStorage.removeItem('confirmedAd');
+        localStorage.setItem('confirmedAd', JSON.stringify(leftData));
+        navigate('/admindashboard')
+    }
 
     return (
         <div className="adminDashBoard">
@@ -104,9 +121,25 @@ export const AdminDashBoard = () => {
                                     </div>
                                 </section>
                             )
-                        }) : "Non of the User's requested for advertising"
+                        }) : "None of the User's requested for advertising"
                 }
-
+                {getDeleteRequest ? getDeleteRequest.map((d) => {
+                    return ((d[2].isDeleted == true) ?
+                        <div>
+                            <section>
+                                <article>{d[0].BusinessType}</article>
+                                <article>{d[3].username}</article>
+                            </section>
+                            <aside>
+                                <button onClick={() => onDeleteAdClick(d[4].registerAdId)}>delete</button>
+                            </aside>
+                        </div>
+                        :
+                        <div>username: {d[3].username} BusinessType: {d[0].BusinessType} Id: {d[4].registerAdId} has not requested for Deleting advertisement</div>
+                    )
+                })
+                    : <div>None of the advertisement is confirmed</div>
+                }
             </main>
         </div>
     )

@@ -24,10 +24,11 @@ const Login = () => {
                         alert("Incorrect password")
                     }
                 }
-                else {
-                    alert("Incorrect username")
-                }
+                // else {
+                //     alert("Incorrect username")
+                // }
             });
+            // localStorage.currentUser=JSON.stringify(foundUser)
             let getCurrentUserData = (localStorage.getItem("currentUser"));
             if (!getCurrentUserData && !!foundUser) {
                 localStorage.setItem('currentUser', JSON.stringify(foundUser));
